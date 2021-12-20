@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.Loginholder {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f2f2f2;
+}
+.loginform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 0.2rem;
+}
+.loginform input:nth-child(2),
+.loginform input:nth-child(4) {
+  background-color: #ebebeb;
+  font-size: 14px;
+  border: 1 px solid #e6e6e6;
+  width: inherit;
+  border-radius: 3 px;
+  height: 40 px;
+  padding: 10 px;
+  color: #666;
+  -webkit-appearance: none;
+  width: 350px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  height: 44px;
+  border: none;
+  margin: 10px 0px;
+}
+.loginform input:nth-child(5) {
+  width: 350px;
+  margin-top: 25px;
+  height: 44px;
+  border: none;
+  background-color: orangered;
+  color: white;
+  border-radius: 0.2rem;
+}
+.logged {
+  background-color: white;
+  width: 415px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  border-radius: 0.2rem;
+}
+.Loginholder p:nth-child(1) {
+  font-size: 34px;
+  margin-bottom: 5px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #333333;
+}
+.Loginholder p:nth-child(2) {
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #333333;
+}
+.btnsideforlogin {
+  margin-top: 20px;
+  /*display:flex;*/
+  width: 350px;
+}
+.btnsideforlogin button:nth-child(1) {
+  width: 100%;border-radius: 4px;
+  height: 44px;
+  font-size: 16px;
+font-weight: 570;
+  background-color: #f27A1A;
+  color: #fff;
+  border: 1px solid #f27a1a;
+}
+.btnsideforlogin button:nth-child(2) {
+  width: 20%;
+  height: 20px;
+  border: none;
+  background-color: orange;
+}
+.cikisyap{
+  background:none;
+  border:none;
+  text-decoration: underline;
+  color:orangered;
+}

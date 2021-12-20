@@ -1,0 +1,181 @@
+import { useLocation } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import axios from "axios";
+import "./Foradmin.css";
+import React, { Component } from "react";
+
+const Admin = () => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[3];
+  const [file, setFile] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [sil, setsil] = useState([]);
+  const [silca, setsilca] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/admin")
+      .then((result) => setFile(result.data));
+  }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/admin/addcategories")
+      .then((result) => setFiles(result.data));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/admin/delete/" + path)
+      .then((response) => {
+        setsil(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [path]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/admin/deleteca/" + path)
+      .then((response) => {
+        setsilca(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [path]);
+  return (
+    <div class="adminport">
+
+      <div class="altnavbar">
+        <Link to="/addd">
+          <p>product add</p>
+        </Link>
+        <Link to="/adddcategories">
+          <p>category add</p>
+        </Link>
+      </div>
+      <h1>Admin Page</h1>
+      <div class="adminortalama">
+        <h1>Category</h1>
+        <div class="adminpageforoneside">
+          {files.map((item) => {
+            return (
+              <table>
+                <tr>
+                  <td>category</td>
+                  <td> {item.category}</td>
+                </tr>
+                <tr>
+                  <td>
+                    {" "}
+                    <Link to={`/admin/deleteca/${item.category}`}>
+                      <button>delete</button>
+                    </Link>
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            );
+          })}
+        </div><h1>Product</h1>
+        <div class="adminpagefortoside">
+        
+          {file.map((item) => {
+            return (
+              <table>
+                <tr>
+                  <td>title</td>
+                  <td> {item.title}</td>
+                </tr>
+                <tr>
+                  <td>text</td>
+                  <td>{item.text}</td>
+                </tr>
+                <tr>
+                  <td>category</td>
+                  <td>{item.category}</td>
+                </tr>
+                <tr>
+                  <td>price</td>
+                  <td>{item.price}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    {" "}
+                    <Link to={`/admin/delete/${item.title}`}>
+                      <button>delete</button>
+                    </Link>
+                    <button>Update</button>
+                  </td>
+                </tr>
+              </table>
+            );
+          })}
+        </div>
+      </div>
+
+      <h1>Admin Page</h1>
+      <div class="adjustAdminPanel">
+        <div class="adjustAdminPanelOne">
+          <h3>Product</h3>
+          {file.map((item) => {
+            return (
+              <table>
+                <tr>
+                  <td>title</td>
+                  <td> {item.title}</td>
+                </tr>
+                <tr>
+                  <td>text</td>
+                  <td>{item.text}</td>
+                </tr>
+                <tr>
+                  <td>category</td>
+                  <td>{item.category}</td>
+                </tr>
+                <tr>
+                  <td>price</td>
+                  <td>{item.price}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    {" "}
+                    <Link to={`/admin/delete/${item.title}`}>
+                      <button>delete</button>
+                    </Link>
+                    <button>Update</button>
+                  </td>
+                </tr>
+              </table>
+            );
+          })}
+        </div>
+        <div class="adjustAdminPanelTo">
+          <h3>Category</h3>
+          {files.map((item) => {
+            return (
+              <table>
+                <tr>
+                  <td>category</td>
+                  <td> {item.category}</td>
+                </tr>
+                <tr>
+                  <td>
+                    {" "}
+                    <Link to={`/admin/deleteca/${item.category}`}>
+                      <button>delete</button>
+                    </Link>
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Admin;
